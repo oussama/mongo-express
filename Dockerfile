@@ -23,6 +23,8 @@ COPY . /app
 
 RUN cp config.default.js config.js
 
+RUN npm i
+
 RUN npm run build
 
 CMD ["npm", "start"]
