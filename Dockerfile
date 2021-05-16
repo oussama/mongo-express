@@ -1,5 +1,9 @@
 FROM node:12-slim
 
+
+RUN apt-get update
+RUN apt-get install -y git --no-install-recommends
+
 EXPOSE 8081
 
 # override some config defaults with values that will work better for docker
