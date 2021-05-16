@@ -3,7 +3,7 @@ FROM node:12-slim
 # grab tini for signal processing and zombie killing
 ENV TINI_VERSION 0.9.0
 RUN set -x \
-	&& apt-get update && apt-get install -y ca-certificates curl \
+	&& apt-get update \
 		--no-install-recommends \
 	&& apt-get install -y gpg \
 	&& curl -fSL "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini" -o /usr/local/bin/tini \
@@ -14,8 +14,6 @@ RUN set -x \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
 	&& chmod +x /usr/local/bin/tini \
 	&& tini -h \
-	&& apt-get purge --auto-remove -y ca-certificates curl \
-	&& rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8081
 
